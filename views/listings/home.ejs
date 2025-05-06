@@ -1,0 +1,74 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+<div  id="filters" >
+  <div class="filter">
+    <i class="fa-solid fa-bed"></i>
+    <p>rooms</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-star"></i>
+    <p>expensive</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-house-user"></i> 
+       <p>destiny</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-umbrella-beach"></i>  
+      <p>beach</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-mountain-sun"></i>
+        <p>mountain view</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-tree"></i>
+        <p>tree house</p>
+  </div>
+  <div class="filter">
+    <i class="fa-brands fa-threads"></i>
+        <p>riads</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-compass"></i>
+        <p>compass</p>
+  </div>
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <i class="fa-solid fa-filter">
+      </i> <span>filter</span>
+    </div>
+  </div>
+
+
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+      <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+    </div>
+  </div>
+
+</div>
+    <!-- <a href="/listings/new">create new listing</a> -->
+     <div class="row  row-cols-lg-3  row-cols-md-2 row-cols-sm-1">
+        <% for(let data of allData){%>
+                 <div class="card listing-card" style="width: 20rem;">
+                  <a href="/listings/<%= data.id%>" class="listing-link">
+                <img src="<%= data.image.url%>" style="height: 20rem;" class="card-img-top" alt="listing image"> 
+                <div class="card-img-overlay"></div>
+
+                <div class="card-body">
+                  <h4 class="card-text"> <%=data.location %>,<%=data.country%>  </h4>
+                  <h5 class="card-text">  &#8377;<%=data.price%>/ night 
+                  <i class="tax">&nbsp; +18%GST</i></h5>
+                </div>
+              </a>
+
+              </div>
+              <% }%>
+     </div>
+</body>
+
+

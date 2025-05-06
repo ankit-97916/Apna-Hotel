@@ -1,0 +1,132 @@
+<% layout('/layouts/boilerplate') %>
+
+<body>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h2>Edit listing</h2>
+
+      <form method="post" action="/listings/<%=listing.id%>?_method=put"
+        class="needs-validation"
+        enctype="multipart/form-data"
+        novalidate>
+        <div class="mb-1">
+          <label for="title" class="form-label">Title</label>
+          <input
+          required
+            value="<%=listing.title %>"
+            name="listing[title]"
+            type="text"
+            class="form-control"
+            id="title"
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+
+        </div>
+        <div class="mb-1">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+          required
+            name="listing[description]"
+            type="text"
+            class="form-control"
+            id="description"><%=listing.description %>
+  </textarea>
+          
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+
+
+        </div>
+        <div class="mb-1">
+           <p> <b>Present Image</b></p>
+          <img class="previewImg" src="<%=originalImageUrl %>">
+          
+
+        <div class="mb-1">
+          <label for="image" class="form-label">Upload Image</label>
+          <input
+            name="listing[image]"
+            type="file"
+            class="form-control"
+            id="image"
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="mb-1 col-6">
+            <label for="price" class="form-label">Price</label>
+            <input
+            required
+              value="<%=listing.price %>"
+              name="listing[price]"
+              type="number"
+              class="form-control"
+              id="price"
+            />
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div id="validationServer03Feedback" class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+
+          </div>
+          <div class="mb-1 col-6">
+            <label for="location" class="form-label">Location</label>
+            <input
+            required
+              value="<%=listing.location %>"
+              name="listing[location]"
+              type="text"
+              class="form-control"
+              id="location"
+            />
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div id="validationServer03Feedback" class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+
+          </div>
+        </div>
+        <div class="mb-1">
+          <label for="country" class="form-label">Country</label>
+          <input
+          required
+            value="<%=listing.country %>"
+            name="listing[country]"
+            type="text"
+            class="form-control"
+            id="country"
+            
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
