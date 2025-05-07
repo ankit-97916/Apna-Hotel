@@ -107,9 +107,9 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", { message });
 });
 
-// app.get('/', (req, res) => {
-//   res.send('Welcome to Apna Hotel!');
-// });
+app.get('/', (req, res) => {
+  res.send('Welcome to Apna Hotel!');
+});
 //custom server
 app.listen(3000, () => {
   console.log(`port is working 3000`);
