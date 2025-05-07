@@ -26,18 +26,18 @@ const validateListing = (req, res, next) => {
 router.route("/")
 .get( wrapAsync(listingController.index))
 .post(isLoggedin,upload.single("listing[image]"),validateListing,wrapAsync(listingController.new)) 
-;
+
 router.get("/new", isLoggedin, listingController.newForm);
 
 router.route("/:id")
+.get(wrapAsync(listingController.showListing))
 .put(
-  
   validateListing,
   isLoggedin,
   isOwner,
   upload.single("listing[image]"),
   wrapAsync(listingController.editsubmit)
-).get(wrapAsync(listingController.showListing))
+)
  .delete(
   isLoggedin,
   isOwner,

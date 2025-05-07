@@ -53,8 +53,8 @@ const store =  MongoStore.create({
   },
   touchAfter: 24*3600,
 });
-store.on("error", () => {
-  console.log("ERROR IN MONGO SESSION STORE");
+store.on("error", (err) => {
+  console.log("ERROR IN MONGO SESSION STORE",err);
 })
 
 // session option 
@@ -86,16 +86,12 @@ app.use((req,res, next)=> {
   next();
 })
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Apna Hotel!');
+});
+
+
 // for new user route
-app.get("/demouser", async(req, res)=> {
-  let fakeUser = new User({
-    email: "an@gmail.com",
-    username: "d-student"
-  })
-  let newUser =  await User.register(fakeUser, "ankitkumar");
-  console.dir(newUser._doc.hash.length)
-  res.send(newUser)
-})
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviwsRouter);
@@ -107,9 +103,6 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", { message });
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Apna Hotel!');
-});
 //custom server
 app.listen(3000, () => {
   console.log(`port is working 3000`);
