@@ -1,12 +1,17 @@
 // storing a backened core
 
 const Listing =  require("../models/listing");
-const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const mapToken = process.env.MAP_TOKEN;
+// const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+// const mapToken = process.env.MAP_TOKEN;
 
 
 // index for show all listings
 module.exports.index = async (req,res)=> {
+    let allData =  await Listing.find();   
+       res.render("listings/home.ejs", {allData});
+};
+
+module.exports.root = async (req,res)=> {
     let allData =  await Listing.find();   
        res.render("listings/home.ejs", {allData});
 };
