@@ -88,7 +88,7 @@ app.use((req,res, next)=> {
 })
 
 
-app.use("/", listingsRouter)
+app.get("/", listingsRouter)
 // for new user route
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviwsRouter);

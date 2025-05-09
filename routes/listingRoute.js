@@ -24,8 +24,9 @@ const validateListing = (req, res, next) => {
 };
 
 // extra
-router.route("/")
-.get( wrapAsync(listingController.root))
+// router.route("/")
+// .get( wrapAsync(listingController.root))
+// .post(isLoggedin,upload.single("listing[image]"),validateListing,wrapAsync(listingController.new)) 
 
 
 router.route("/")
