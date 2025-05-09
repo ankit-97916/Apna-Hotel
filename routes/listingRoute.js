@@ -26,16 +26,15 @@ const validateListing = (req, res, next) => {
 // extra
 router.route("/")
 .get( wrapAsync(listingController.root))
-.post(isLoggedin,upload.single("listing[image]"),validateListing,wrapAsync(listingController.new)) 
 
 
-router.route("/listings/")
+router.route("/")
 .get( wrapAsync(listingController.index))
 .post(isLoggedin,upload.single("listing[image]"),validateListing,wrapAsync(listingController.new)) 
 
-router.get("/listings/new", isLoggedin, listingController.newForm);
+router.get("/new", isLoggedin, listingController.newForm);
 
-router.route("/listings/:id")
+router.route("/:id")
 .get(wrapAsync(listingController.showListing))
 .put(
   validateListing,
@@ -52,7 +51,7 @@ router.route("/listings/:id")
 
 // edit route 2 step-
 router.get(
-  "/listings/:id/edit",
+  "/:id/edit",
   isLoggedin,
   isOwner,
   wrapAsync(listingController.editform)
