@@ -15,28 +15,63 @@
       <div class="navbar-nav">
         <a class="nav-link" href="/listings">Explore</a>
       </div>
-      </div>
-      <div class="nabvarsearch">
-      <div class="navbar-nav">
+      <div class="navbar-nav ms-auto" >
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search destination" aria-label="Search">
            <button class="btn btn-search" type="submit"> <i class="fa-solid fa-magnifying-glass"></i>Search</button>
         </form>
       </div>
-    </div>
 
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
 
         <% if(currUser === undefined){%>
-        <a class="nav-link ssss" href="/signup" target="_self"> <b>sign Up</b></a>
-        <a class="nav-link ssss" href="/login"><b>Log in</b></a>
+          
+          <div class="userbar">
+            <div><i class="fa-solid fa-bars"></i></div>
+            <div><i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+            <div class="userInfo">
+              <a class="nav-link ssss" href="/signup" target="_self"> sign Up</a>
+              <a class="nav-link ssss" href="/login">Log in</a>
+            </div>
 
         <% }%> <% if(currUser){%>
-        <a class="nav-link ssss" href="/logout"> <b>Log out</b></a>
+        <!-- <a class="nav-link ssss" href="/logout"> <b>Log out</b></a>
+        <div><i class="fa-solid fa-user"></i> -->
+          <div class="userbar">
+            <!-- <div><i class="fa-solid fa-bars"></i></div> -->
+            <div class="usernameAfterLOgin" > <p><%=currUser.username[0].toUpperCase()%></p>
+            </div>
+          </div>
+          <div class="userInfo">
+            <p>@<%=currUser.username%></p>
+            <hr>
+            <a class="nav-link ssss" href="/help">help</a>
+            <a class="nav-link ssss" href="/logout">Log out</a>
+
+
+          </div>
+
+
+
 
         <% }%>
       </div>
+
+      </div>
+   
+
     </div>
   </div>
 </nav>
+
+
+<script>
+  let userbar = document.querySelector(".userbar");
+  userbar.addEventListener("click", ()=> {
+    let userInfo =  document.querySelector(".userInfo");
+    userInfo.classList.toggle("userInfoo");
+  })
+</script>

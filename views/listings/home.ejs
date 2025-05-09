@@ -1,74 +1,79 @@
 <% layout('/layouts/boilerplate') %>
 <body>
 <div  id="filters" >
-  <div class="filter">
-    <i class="fa-solid fa-bed"></i>
-    <p>rooms</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-star"></i>
-    <p>expensive</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-house-user"></i> 
-       <p>destiny</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-umbrella-beach"></i>  
-      <p>beach</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-mountain-sun"></i>
-        <p>mountain view</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-tree"></i>
-        <p>tree house</p>
-  </div>
-  <div class="filter">
-    <i class="fa-brands fa-threads"></i>
-        <p>riads</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-compass"></i>
-        <p>compass</p>
-  </div>
-
-  <div class="tax-toggle">
-    <div class="form-check-reverse form-switch">
-      <i class="fa-solid fa-filter">
-      </i> <span>filter</span>
+  <div class="slider-container">
+    <button class="nav-btn left">&#10094;</button>
+    
+    <div class="slider" id="slider">
+      <div class="icon-item"><i class="fas fa-wind"></i><span>Windmills</span></div>
+      <div class="icon-item"><i class="fas fa-home"></i><span>Minsus</span></div>
+      <div class="icon-item"><i class="fas fa-building"></i><span>Towers</span></div>
+      <div class="icon-item"><i class="fas fa-warehouse"></i><span>Barns</span></div>
+      <div class="icon-item"><i class="fas fa-mountain"></i><span>Desert</span></div>
+      <div class="icon-item"><i class="fas fa-campground"></i><span>Yurts</span></div>
+      <div class="icon-item"><i class="fas fa-wheelchair"></i><span>Adapted</span></div>
+      <div class="icon-item"><i class="fas fa-music"></i><span> Pianos</span></div>
+      <div class="icon-item"><i class="fas fa-home"></i><span>Dammusi</span></div>
+      <div class="icon-item"><i class="fas fa-hotel"></i><span>Riads</span></div>
+      <div class="icon-item"><i class="fas fa-house-user"></i><span>Trulli</span></div>
+      <div class="icon-item"><i class="fas fa-umbrella-beach"></i><span>Beach</span></div>
+      <div class="icon-item"><i class="fas fa-tree"></i><span>Treehouse</span></div>
     </div>
+
+    <button class="nav-btn right">&#10095;</button>
   </div>
+  
+        <!-- your icons here -->
+      <button class="filter-btn"><i class="fas fa-sliders-h"></i> Filters</button>
+  
+
 
 
 
   <div class="tax-toggle">
     <div class="form-check-reverse form-switch">
       <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-      <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+      <label class="form-check-label" for="switchCheckDefault">  After taxes</label>
     </div>
   </div>
 
 </div>
     <!-- <a href="/listings/new">create new listing</a> -->
-     <div class="row  row-cols-lg-3  row-cols-md-2 row-cols-sm-1">
-        <% for(let data of allData){%>
-                 <div class="card listing-card" style="width: 20rem;">
-                  <a href="/listings/<%= data.id%>" class="listing-link">
-                <img src="<%= data.image.url%>" style="height: 20rem;" class="card-img-top" alt="listing image"> 
-                <div class="card-img-overlay"></div>
-
-                <div class="card-body">
-                  <h4 class="card-text"> <%=data.location %>,<%=data.country%>  </h4>
-                  <h5 class="card-text">  &#8377;<%=data.price%>/ night 
-                  <i class="tax">&nbsp; +18%GST</i></h5>
-                </div>
-              </a>
-
+    <div class="listing-grids">
+      <%for(let data of allData) {%>
+        <a class="data-links" href="/listings/<%=data.id%>">
+        <div class="listing-cards" role="article" tabindex="0" aria-label="Cozy studio in downtown New York">
+          <img class="listing-image" src="<%=data.image.url%>" alt="Cozy studio apartment" />
+          <div class="listing-content">
+            <div class="listing-location"><%=data.location%>,<%=data.country%></div>
+            <h2 class="listing-title"><%=data.title%></h2>
+            <div class="listing-footer">
+              <div class="listing-price"><b>&#8377; <%=data.price%></b>/night &nbsp; <i class="tax-info">+18%GST</i></div>
+              <div class="listing-rating" aria-label="4.8 out of 5 stars">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                4.8
               </div>
-              <% }%>
-     </div>
-</body>
+            </div>
+          </div>
+        </div>
+      </a>
+      <%}%>
+    </div>
+  </body>
 
+<script>
+  // scrollbar logic
+  const slider = document.getElementById('slider');
+const leftBtn = document.querySelector('.left');
+const rightBtn = document.querySelector('.right');
+
+leftBtn.addEventListener('click', () => {
+  slider.scrollBy({ left: -200, behavior: 'smooth' });
+});
+
+rightBtn.addEventListener('click', () => {
+  slider.scrollBy({ left: 200, behavior: 'smooth' });
+});
+
+</script>
 

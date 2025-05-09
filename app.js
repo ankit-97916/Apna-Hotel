@@ -43,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static('public'));
 
 // connect mongo package use process 
 const store =  MongoStore.create({
@@ -85,10 +86,6 @@ app.use((req,res, next)=> {
   res.locals.currUser = req.user;
   next();
 })
-
-app.get('/', (req, res) => {
-  res.send('Welcome to Apna Hotel!');
-});
 
 
 // for new user route
