@@ -1,47 +1,50 @@
 <% layout('/layouts/boilerplate') %>
 
-<body>
-  <div class="row mt-3">
-    <div class="col-8 offset-2">
-      <div class="card col-6 offset-1 listing-card" style="width: 40rem">
-        <h2><%= listing.title %></h2>
 
-       
+  <body>
+  <div class="showcontainer mt-3 ms-5 offset-2 col-10">
+    <!-- Title -->
+    <h1 class="title"><%= listing.title%></h1>
 
-        <img
-          src="<%= listing.image.url%>"
-          class="card-img-top show-img"
-          alt="listing-image"
-        />
-        <div class="card-body">
-          <p class="card-text">
-            <i> owned by <%= listing.owner.username%> -</i> <br />
+    <!-- Image Gallery -->
+    <div class="card gallery">
+      <img src="<%= listing.image.url%>" alt="Main Property Image" class="card-img-top main-img" />
+    </div>
 
-            <%= listing.description%> <br />
+    <!-- Info Section -->
+    <section class="info">
+      <p> <i> owned by <b>@<%= listing.owner.username%></b> -</i></p>
+      <p><%= listing.description%></p>
+      <p> <b> &#8377; <%= listing.price%>/night</b></p>
+      <p><%= listing.location%>,<%= listing.country%></p>
+    </section>
 
-            <b> &#8377; <%= listing.price%> </b> <br />
-            <%= listing.location%>,<%= listing.country%>
-          </p>
-        </div>
-      </div>
-      <% if(currUser && currUser._id.equals(listing.owner._id)) {%>
-      <div class="btnsAddDelete">
-        <a
+<!-- add and delete dtn -->
+ <section class="addAndDeletebtns" style="display: flex;  text-align: center;">
+       <% if(currUser && currUser._id.equals(listing.owner._id)) {%>
+        <div class="addAndDeletebtns" style="display: flex; gap: 2rem; margin-top: 0px;">
+        <a style="width: 6rem; height: 2.5rem;"
           href="/listings/<%= listing.id%>/edit"
-          class="btn btn-info col-1 offset-1"
-          >Edit</a
-        >
+          class="btn btn-info"
+          
+          >Edit</a>
 
-        <form method="post" action="/listings/<%=listing.id%>?_method=delete">
-          <button class="btn btn-danger">Delete</button>
+        <form style="height: 3rem; margin-top: 0px;" method="post" action="/listings/<%=listing.id%>?_method=delete">
+          <button class="btn btn-danger" style="width: 6rem; height: 2.5rem;"
+>Delete</button>
         </form>
-      </div>
+        </div>
+      
       <% } %>
+      </section>
+      <hr>
+      
 
 
-      <div class="mb-3 mt-3">
-        <hr />
-        <h4>Leave a Review</h4>
+    <!-- Review Section -->
+     <section class="review">
+      
+      <h3>Leave a Review :</h3>
 
         <% if(currUser) {%>
 
@@ -87,16 +90,18 @@
           <br />
           <button class="btn btn-outline-primary">Submit</button>
         </form>
+
       <%}%>
+      </section>
         <hr />
         <% if(listing.reviews.length > 0){%>
         <div class="row">
           <h4>All Reviews</h4>
 
           <%for(review of listing.reviews){ %>
-          <div class="card col-5 mb-3 ms-3">
-            <div class="card-body">
-              <h5 class="card-title"><%=review.author.username%></h5>
+          <div class="card col-5 mb-3 ms-3  reviewCard">
+            <div class="card-body review">
+              <h5 class="card-title">@<%=review.author.username%> -</h5>
               <p class="starability-result card-text" data-rating="<%= review.ratings%>">
               </p>
 
@@ -120,6 +125,5 @@
         </div>
       <%}%>
     </div>
-  </div>
-  </div>
 </body>
+

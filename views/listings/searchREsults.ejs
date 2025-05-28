@@ -1,0 +1,34 @@
+<% layout('/layouts/boilerplate') %>
+
+
+    <div class="listing-grids mt-3">
+     <% if(listings.length > 0){%>
+      <%for(let listing of listings) {%>
+        <a class="data-links" href="/listings/<%=listing.id%>">
+        <div class="listing-cards" role="article" tabindex="0" aria-label="Cozy studio in downtown New York">
+          <img class="listing-image" src="<%=listing.image.url%>" alt="Cozy studio apartment" />
+          <div class="listing-content">
+            <div class="listing-location"><%=listing.location%>,<%=listing.country%></div>
+            <h2 class="listing-title"><%=listing.title%></h2>
+            <div class="listing-footer">
+              <div class="listing-price"><b>&#8377; <%=listing.price%></b>/night &nbsp; <i class="tax">+18%GST</i></div>
+              <div class="listing-rating" aria-label="4.8 out of 5 stars">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                4.8
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <%}%>
+
+      <%} else {%> 
+        <div class="err"> !The Locations listings does not exists</div>
+        <%}%>
+
+
+
+
+
+    </div>
+

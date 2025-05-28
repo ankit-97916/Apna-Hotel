@@ -1,0 +1,16 @@
+  /* edit */
+  .previewImg{
+  object-fit: cover;
+  height: 20vh;
+  width: 20vw;
+
+} 
+
+  @media (max-width: 768px){
+    .previewImg{
+      max-width: 350px !important; 
+      width: 100% !important;
+      object-fit: auto !important;
+
+    }
+  } 

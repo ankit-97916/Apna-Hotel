@@ -13,20 +13,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link explore" href="/listings">Explore</a>
+
       </div>
-      <div class="navbar-nav ms-auto" >
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search destination" aria-label="Search">
-           <button class="btn btn-search" type="submit"> <i class="fa-solid fa-magnifying-glass"></i>Search</button>
-        </form>
-      </div>
+      <form class="search-bar" action="/search" method="post">
+        <input name="query"  type="search" placeholder="Search destination" class="form-control search-input"/><br>
+    
+        <button type="submit" class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>       
+    
 
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <a class="nav-link airbnbyourhome" href="/listings/new">Airbnb your home</a>
 
         <% if(currUser === undefined){%>
-          
           <div class="userbar">
             <div><i class="fa-solid fa-bars"></i></div>
             <div><i class="fa-solid fa-user"></i>
@@ -38,24 +40,23 @@
             </div>
 
         <% }%> <% if(currUser){%>
-        <!-- <a class="nav-link ssss" href="/logout"> <b>Log out</b></a>
-        <div><i class="fa-solid fa-user"></i> -->
           <div class="userbar">
-            <!-- <div><i class="fa-solid fa-bars"></i></div> -->
+            <div><i class="fa-solid fa-bars"></i></div>
+
             <div class="usernameAfterLOgin" > <p><%=currUser.username[0].toUpperCase()%></p>
             </div>
           </div>
           <div class="userInfo">
-            <p>@<%=currUser.username%></p>
+            <p> <b> hii, <%=currUser.username%></b></p> <br>
+            <p> <%=currUser.email%></p>
+            <hr>
+            <a class="nav-link airbnbyourhome" href="/listings/new">Airbnb your home</a>
             <hr>
             <a class="nav-link ssss" href="/help">help</a>
+            <a class="nav-link ssss" href="/help">contact</a>
+
             <a class="nav-link ssss" href="/logout">Log out</a>
-
-
           </div>
-
-
-
 
         <% }%>
       </div>
@@ -73,5 +74,11 @@
   userbar.addEventListener("click", ()=> {
     let userInfo =  document.querySelector(".userInfo");
     userInfo.classList.toggle("userInfoo");
+  });
+
+  let navbarTogglerBtn  = document.querySelector(".navbar-toggler");
+  navbarTogglerBtn.addEventListener("click", ()=> {
+    let navbar =  document.querySelector(".navbar");
+    navbar.classList.toggle("navbarrrrrr")
   })
 </script>

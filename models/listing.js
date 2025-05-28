@@ -18,6 +18,10 @@ const listingSchema = new Schema({
       url: String,
       filename: String
    },
+   category : {
+      type : String,
+      enum: []
+   },
 
    price: {
     type : Number,

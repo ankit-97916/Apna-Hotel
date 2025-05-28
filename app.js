@@ -85,10 +85,28 @@ app.use((req,res, next)=> {
   res.locals.err = req.flash("error");
   res.locals.currUser = req.user;
   next();
-})
+});
+app.post("/search", async (req, res) => {
+  let { query } = req.body;
+
+  // Trim and convert to lowercase for case-insensitive comparison
+  query = query.trim().toLowerCase();
+
+  const allListings = await Listing.find({});
+  
+  // Filter manually based on exact/partial match without regex
+  const filteredListings = allListings.filter(listing => {
+    return (
+      listing.location.toLowerCase().includes(query) ||
+      listing.country.toLowerCase().includes(query)
+    );
+  });
+
+  res.render("listings/searchREsults", { listings: filteredListings });
+});
 
 
-app.get("/", listingsRouter)
+app.get  ("/", listingsRouter)
 // for new user route
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviwsRouter);
@@ -99,6 +117,7 @@ app.use((err, req, res, next) => {
   let { status = 500, message = "Some Errors Occured" } = err;
   res.render("error.ejs", { message });
 });
+
 
 //custom server
 app.listen(3000, () => {
